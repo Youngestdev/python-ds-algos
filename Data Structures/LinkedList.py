@@ -23,7 +23,16 @@ class LinkedList:
     new_node = Node(data)
     new_node.next = self.head
     self.head = new_node
-     
+
+  def insert_after_node(self, prev_node, data):
+    new_node = Node(data)
+    if not prev_node:
+      print("Previous mode doesn't exist")
+      return
+
+    new_node.next = prev_node.next
+    prev_node.next = new_node
+
   def printList(self):
     cur_node = self.head
     while cur_node:
@@ -34,4 +43,5 @@ aList = LinkedList()
 aList.append("Tomatoes")
 aList.append("Pepper")
 aList.prepend("Money")
+aList.insert_after_node(aList.head.next, "Idk")
 aList.printList()
