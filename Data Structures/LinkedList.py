@@ -1,4 +1,4 @@
-# LinkedList implementation!!
+# Singly LinkedList implementation!!
 
 class Node:
   def __init__(self, data):
@@ -29,7 +29,6 @@ class LinkedList:
     if not prev_node:
       print("Previous mode doesn't exist")
       return
-
     new_node.next = prev_node.next
     prev_node.next = new_node
 
@@ -120,12 +119,24 @@ class LinkedList:
     
     curr_1.next, curr_2.next = curr_2.next, curr_1.next
 
-      
+  def reverse(self):
+    curr_node = self.head
+    prev_node = None
+    while curr_node:
+      next_node = curr_node.next
+      curr_node.next = prev_node
+      prev_node = curr_node
+      curr_node = next_node
+    self.head = prev_node
+
+
 
 aList = LinkedList()
-aList.append("Tomatoes")
-aList.append("Pepper")
-aList.prepend("Money")
-aList.insert_after_node(aList.head.next, "Idk")
-aList.node_swap("Idk", "Pepper")
+aList.append("A")
+aList.append("B")
+aList.append("C")
+aList.append("D")
+# aList.insert_after_node(aList.head.next, "Idk")
+aList.node_swap("A", "B")
+aList.reverse()
 aList.printList()
