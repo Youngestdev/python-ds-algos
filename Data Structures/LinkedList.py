@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # Singly LinkedList implementation!!
 
 class Node:
@@ -129,14 +130,134 @@ class LinkedList:
       curr_node = next_node
     self.head = prev_node
 
+  def merge_lists(self, list):
+    p = self.head
+    q = list.head
+    s = None
+
+    if not p:
+      return q
+    if not q:
+      return p
+
+    if p and q:
+      if p.data <= q.data:
+        s = p
+        p = s.next
+      else:
+        s = q
+        q = s.next
+      new_head = s
+    
+    while p and q:
+      if p.data <= q.data:
+        s.next = p
+        s = p
+        p = p.next
+      else:
+        s.next = q
+        s = q
+        q = q.next
+
+    if not p:
+      s.next = q
+    if not q:
+      s.next = p
+
+    return new_head
+
+  def remove_duplicates(self):
+    cur = self.head
+    prev = None
+    duplicates = dict()
+
+    while cur:
+      if cur.data in duplicates:
+        prev.next = cur.next
+        cur = None
+      else:
+        duplicates[cur.data] = 1
+        prev = cur
+      cur = prev.next
+
+  def nth_to_last_node(self, n):
+    total_len = self.len_iterative()
+    cur = self.head
+
+    while cur:
+      if total_len == n:
+        print(cur.data)
+        return cur.data
+      total_len -= 1
+      cur = cur.next
+
+    if cur is None:
+      return
+
+  def count_occurences(self, data):
+    count = 0
+    cur = self.head
+
+    while cur:
+      if cur.data == data:
+        count += 1
+      cur = cur.next
+    return count
+
+  def rotate(self, k):
+    if self.head and self.head.next:
+      p = self.head
+      q = self.head
+      prev = None
+      count = 0
+
+      while p and count < k:
+        prev = p
+        p = p.next
+        q = q.next
+        count += 1
+      p = prev
+
+      while q:
+        prev = q
+        q = q.next
+      q = prev
+
+      q.next = self.head
+      self.head = p.next
+      p.next = None
+
+  def isPalindrome_string(self):
+    s = ""
+    cur = self.head
+
+    while cur:
+      s += cur.data
+      cur = cur.next
+    return s == s[::-1]
+
+  def isPalindrome_stack(self):
+    s = []
+    cur = self.head
+
+    while cur:
+      s.append(cur.data)
+      cur = cur.next
+    cur = self.head
+
+    while cur:
+      data = s.pop()
+      if cur.data != data:
+        return False
+      cur = cur.next
+    return True
 
 
-aList = LinkedList()
-aList.append("A")
-aList.append("B")
-aList.append("C")
-aList.append("D")
-# aList.insert_after_node(aList.head.next, "Idk")
-aList.node_swap("A", "B")
-aList.reverse()
-aList.printList()
+myList = LinkedList()
+myList.append(4)
+myList.append(1)
+myList.append(3)
+myList.append(2)
+myList.append(2)
+myList.remove_duplicates()
+print(myList.isPalindrome_stack())
