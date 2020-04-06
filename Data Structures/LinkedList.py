@@ -252,12 +252,58 @@ class LinkedList:
       cur = cur.next
     return True
 
+# move_to_tail currently results to an infinite loop.
+  def move_tail_to_head(self):
+    if self.head and self.head.next:
+      last = self.head
+      second_to_last = None
+      while last.next:
+        second_to_last = last
+        last = last.next
+      last.next = self.head
+      second_to_last = None
+      self.head = last
+
+  def sum_of_two_lists(self, sList):
+    p = self.head
+    q = sList.head
+    r = LinkedList()
+    carry = 0
+
+    while p or q:
+      if not p:
+        i = 0
+      else:
+        i = p.data
+      if not q:
+        j = 0
+      else:
+        j = q.data
+
+      s = i + j + carry
+      if s >= 10:
+        carry = 1
+        remainder = s % 10
+        r.append(remainder)
+      else:
+        carry = 0
+        r.append(s)
+      if p:
+        p = p.next
+      if q:
+        q = q.next
+    r.printList()
+        
 
 myList = LinkedList()
-myList.append(4)
-myList.append(1)
+myList.append(5)
+myList.append(6)
 myList.append(3)
-myList.append(2)
-myList.append(2)
-myList.remove_duplicates()
-print(myList.isPalindrome_stack())
+# myList.remove_duplicates()
+myList.printList()
+print("\t")
+myList2 = LinkedList()
+myList2.append(8)
+myList2.append(4) 
+myList2.append(2)
+myList.sum_of_two_lists(myList2)
