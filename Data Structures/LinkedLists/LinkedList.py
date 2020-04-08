@@ -1,10 +1,7 @@
 #!/usr/bin/python3
 # Singly LinkedList implementation!!
 
-class Node:
-  def __init__(self, data):
-    self.data = data
-    self.next = None
+from Nodes import Node
 
 class LinkedList:
   def __init__(self):
@@ -251,6 +248,7 @@ class LinkedList:
         return False
       cur = cur.next
     return True
+    
   def move_tail_to_head(self):
     if self.head and self.head.next:
       last = self.head
@@ -291,3 +289,10 @@ class LinkedList:
       if q:
         q = q.next
     r.printList()
+
+  def swap_adjacent_nodes(self):
+    cur_node = self.head
+
+    while cur_node and cur_node.next is not None:
+      cur_node.data, cur_node.next.data = cur_node.next.data, cur_node.data
+      cur_node = cur_node.next.next
