@@ -1,11 +1,13 @@
-from LinkedList import *
+from LinkedList import LinkedList
 
 
 myList = LinkedList()
-myList.append(5)
-myList.append(6)
+myList.append(1)
+myList.append(2)
 myList.append(3)
+myList.append(4)
 
+myList.swap_adjacent_nodes()
 myList2 = LinkedList()
 myList2.append(8)
 myList2.append(4) 
