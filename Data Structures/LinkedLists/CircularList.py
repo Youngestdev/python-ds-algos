@@ -8,7 +8,6 @@ class CircularLinkedList:
     new_node = Node(data)
     cur_node = self.head
 
-
     if not self.head:
       self.head = new_node
       new_node.next = self.head # Idk, I can also set this to new_node abi?
