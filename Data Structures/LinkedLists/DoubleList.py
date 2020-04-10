@@ -35,6 +35,35 @@ class DoubleLinkedList:
     new_node.next = cur  
     self.head = new_node
     
+  def insert_before_node(self, prev_node, node):
+    new_node = DoubleNode(node)
+
+    if not prev_node:
+      print("Previous node doesn't exist!")
+      return
+    
+    if prev_node.prev is None:
+      new_node.next = prev_node
+      prev_node.prev = new_node
+      self.head = new_node
+      return
+
+    prev_node.prev.next = new_node
+    new_node.next = prev_node
+    
+    
+  def insert_after_node(self, prev_node, node):
+    new_node = DoubleNode(node)
+
+    if not prev_node:
+      print("Previous node doesn't exist!")
+      return
+
+    new_node.next = prev_node.next
+    prev_node.next = new_node
+
+
+
 
   def printList(self):
     cur = self.head
