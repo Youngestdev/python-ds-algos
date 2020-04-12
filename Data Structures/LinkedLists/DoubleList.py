@@ -71,7 +71,7 @@ class DoubleLinkedList:
         new_node.next = prev_node.next
         prev_node.next = new_node
 
-    def delete_node(self, key):
+    def delete(self, key):
         cur = self.head
         while cur:
             if cur.data == key and cur == self.head:
@@ -112,6 +112,61 @@ class DoubleLinkedList:
             cur = cur.prev
         if prev_node:
             self.head = prev_node.prev
+
+    def delete_node(self, node):
+        cur = self.head
+        while cur:
+            if cur == node and cur == self.head:
+                if not cur.next:
+                    self.head = None
+                    return
+
+                else:
+                    next_node = cur.next
+                    cur = None  # This should set the entire node's data to None, yeah?
+                    cur = next_node
+                    self.head = cur
+                    return
+            elif cur == node:
+                if cur.next:
+                    cur.prev.next = cur.next
+                    cur = None
+                    return
+                else:
+                    cur.prev.next = None
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+            cur = cur.next
+
+    def remove_duplicates(self):
+        cur = self.head
+        duplicates = dict()
+
+        while cur:
+            if cur.data not in duplicates:
+                duplicates[cur.data] = 1
+                cur = cur.next
+            else:
+                next_node = cur.next
+                self.delete_node(cur)
+                cur = next_node
+
+    def pairswithsum(self, sum):
+        p = self.head
+        q = None
+        arr = list()
+
+        while p:
+            q = p.next
+            while q:
+                if p.data + q.data == sum:
+                    arr.append("(" + str(p.data) + "," +  str(q.data) + ")")
+                    # print(arr)
+                q = q.next
+            p = p.next
+        return arr
 
     def printlist(self):
         cur = self.head
