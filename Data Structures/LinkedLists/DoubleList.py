@@ -26,7 +26,7 @@ class DoubleLinkedList:
             self.head = new_node
             return
 
-        while cur and cur.next != None:
+        while cur and cur.next is not None:
             cur.prev = cur
             cur = cur.next
         new_node.prev = cur
@@ -153,7 +153,7 @@ class DoubleLinkedList:
                 self.delete_node(cur)
                 cur = next_node
 
-    def pairswithsum(self, sum):
+    def pairswithsum(self, sum_val):
         p = self.head
         q = None
         arr = list()
@@ -161,8 +161,8 @@ class DoubleLinkedList:
         while p:
             q = p.next
             while q:
-                if p.data + q.data == sum:
-                    arr.append("(" + str(p.data) + "," +  str(q.data) + ")")
+                if p.data + q.data == sum_val:
+                    arr.append("(" + str(p.data) + "," + str(q.data) + ")")
                     # print(arr)
                 q = q.next
             p = p.next
@@ -172,5 +172,5 @@ class DoubleLinkedList:
         cur = self.head
 
         while cur:
-            print(cur.data, end="->")
+            print(cur.data, end=" -> ")
             cur = cur.next
