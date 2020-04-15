@@ -13,4 +13,4 @@ def intersect_sorted_array(arr1, arr2):
             i += 1
         else:
             j += 1
-        return intersection
+    return intersection
