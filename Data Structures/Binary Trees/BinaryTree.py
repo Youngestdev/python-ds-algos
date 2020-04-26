@@ -1,7 +1,11 @@
 from BTNode import Node
 from Queue import Queue
 
+
 class BinaryTree(object):
+    """"
+    Binary Tree implementation, it takes a value of type @Node which becomes its root value.
+    """
     def __init__(self, root):
         self.root = Node(root)
 
@@ -82,7 +86,7 @@ tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
 
-print(tree.print_tree("preorder"), end="\n")
-print(tree.print_tree("inorder"), end="\n")
-print(tree.print_tree("postorder"), end="\n")
-print(tree.print_tree("levelorder"), end="\n")
+print(tree.print_tree("preorder")[:-1], end="\n")
+print(tree.print_tree("inorder")[:-1], end="\n")
+print(tree.print_tree("postorder")[:-1], end="\n")
+print(tree.print_tree("levelorder")[:-1], end="\n")

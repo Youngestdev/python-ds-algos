@@ -1,23 +1,27 @@
 class Queue(object):
-  def __init__(self):
-    self.items = []
+    """
+    Queue data structure. Follows the principle of first-in-first-out FIFO
+    """
 
-  def enqueue(self, item):
-    self.items.insert(0, item)
+    def __init__(self):
+        self.items = []
 
-  def dequeue(self):
-    if not self.is_empty():
-      return self.items.pop()
+    def enqueue(self, item):
+        self.items.insert(0, item)
 
-  def is_empty(self):
-    return len(self.items) == 0
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop()
 
-  def peek(self):
-    if not self.is_empty():
-      return self.items[-1].value
+    def is_empty(self):
+        return len(self.items) == 0
 
-  def __len__(self):
-    return self.size()
+    def peek(self):
+        if not self.is_empty():
+            return self.items[-1].value
 
-  def size(self):
-    return len(self.items)
+    def __len__(self):
+        return self.size()
+
+    def size(self):
+        return len(self.items)
