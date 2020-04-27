@@ -1,5 +1,6 @@
 from BTNode import Node
 from Queue import Queue
+from Stacks import Stack
 
 
 class BinaryTree(object):
@@ -67,6 +68,30 @@ class BinaryTree(object):
 
         return traversal
 
+    def reverse_levelorder_print(self, start):
+        if start is None:
+            return
+
+        queue = Queue()
+        stack = Stack()
+        queue.enqueue(start)
+
+        traversal = ""
+        while len(queue) > 0:
+            node = queue.dequeue()
+
+            stack.push(node)
+
+            if node.right:
+                queue.enqueue(node.right)
+            if node.left:
+                queue.enqueue(node.left)
+
+        while len(stack) > 0:
+            node = stack.pop()
+            traversal += str(node.value) + "-"
+
+        return traversal
 
 # 1-2-4-5-3-6-7-
 # 4-2-5-1-6-3-7
@@ -85,8 +110,9 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
-
-print(tree.print_tree("preorder")[:-1], end="\n")
-print(tree.print_tree("inorder")[:-1], end="\n")
-print(tree.print_tree("postorder")[:-1], end="\n")
-print(tree.print_tree("levelorder")[:-1], end="\n")
+#
+# print(tree.print_tree("preorder")[:-1], end="\n")
+# print(tree.print_tree("inorder")[:-1], end="\n")
+# print(tree.print_tree("postorder")[:-1], end="\n")
+# print(tree.print_tree("levelorder")[:-1], end="\n")
+print(tree.reverse_levelorder_print(tree.root)[:-1], end="\n")
