@@ -7,6 +7,7 @@ class BinaryTree(object):
     """"
     Binary Tree implementation, it takes a value of type @Node which becomes its root value.
     """
+
     def __init__(self, root):
         self.root = Node(root)
 
@@ -93,26 +94,20 @@ class BinaryTree(object):
 
         return traversal
 
-# 1-2-4-5-3-6-7-
-# 4-2-5-1-6-3-7
-# 4-2-5-6-3-7-1
+    def height(self, node):
+        if node is None:
+            return -1
+        left_height = self.height(node.left)
+        right_height = self.height(node.right)
+        return 1 + max(left_height, right_height)
+
+    def size_(self, node):
+        if node is None:
+            return 0
+        return 1 + self.size_(node.left) + self.size_(node.right)
+
 #               1
 #           /       \  
 #          2          3  
 #         /  \      /   \
-#        4    5     6   7 
-
-# Set up tree:
-# tree = BinaryTree(1)
-# tree.root.left = Node(2)
-# tree.root.right = Node(3)
-# tree.root.left.left = Node(4)
-# tree.root.left.right = Node(5)
-# tree.root.right.left = Node(6)
-# tree.root.right.right = Node(7)
-#
-# print(tree.print_tree("preorder")[:-1], end="\n")
-# print(tree.print_tree("inorder")[:-1], end="\n")
-# print(tree.print_tree("postorder")[:-1], end="\n")
-# print(tree.print_tree("levelorder")[:-1], end="\n")
-# print(tree.reverse_levelorder_print(tree.root)[:-1], end="\n")
+#        4    5     6   7
