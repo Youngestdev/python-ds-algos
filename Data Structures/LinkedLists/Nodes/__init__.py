@@ -2,7 +2,7 @@
 This consists of Node classes - Lists, Graphs ( in the future) etc
 """
 
-class Node:
+class Node(object):
   """
   Node class for Single and Circular list.
   """

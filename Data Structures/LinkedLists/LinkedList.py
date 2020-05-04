@@ -4,9 +4,9 @@
 from Nodes import Node
 
 
-class LinkedList:
-    def __init__(self):
-        self.head = None
+class LinkedList(object):
+    def __init__(self, head):
+        self.head = Node(head)
 
     def append(self, data):
         new_node = Node(data)
