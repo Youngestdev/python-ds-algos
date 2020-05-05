@@ -57,7 +57,7 @@ class BinaryTree(object):
         queue.enqueue(start)
         traversal = ""
         while len(queue) > 0:
-            traversal += str(queue.peek()) + "-"
+            traversal += str(queue.peek()) + " -> "
 
             node = queue.dequeue()
 
@@ -145,7 +145,6 @@ tree.root.left.left = Node(4)
 tree.root.left.right = Node(5)
 tree.root.right.left = Node(6)
 tree.root.right.right = Node(7)
-# print(tree.levelorder_print(tree.root), end="\n")
 
 tree2 = BinaryTree(39608)
 tree2.root.left = Node(0)
@@ -164,9 +163,5 @@ tree2.root.right.right.right.left = Node(0)
 tree2.root.right.right.right.right = Node(-63491)
 tree2.root.left.left.left.left.left = Node(-63367)
 
-# print(tree2.height(tree2.root))
-
+print(tree2.levelorder_print(tree2.root))
 print(tree2.MaximumLevelSum())
-
-# print(tree.height(tree.root))
-# print(tree.mls(), end="\n")
