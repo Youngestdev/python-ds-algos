@@ -55,7 +55,6 @@ class BinaryTree(object):
 
         queue = Queue()
         queue.enqueue(start)
-
         traversal = ""
         while len(queue) > 0:
             traversal += str(queue.peek()) + "-"
@@ -106,8 +105,68 @@ class BinaryTree(object):
             return 0
         return 1 + self.size_(node.left) + self.size_(node.right)
 
-#               1
-#           /       \  
-#          2          3  
-#         /  \      /   \
-#        4    5     6   7
+    #               1
+    #           /       \
+    #          2          3
+    #         /  \      /   \
+    #        4    5     6   7
+
+    def MaximumLevelSum(self):
+        """
+        Uses a similar technique with the Level order traversal
+        :return: The tree level with the highest sum.
+        """
+
+        start = self.root
+        if start is None:
+            return
+
+        queue = Queue()
+        queue.enqueue(start)
+        arr = list()
+        arr.append(start.value)
+
+        while len(queue) > 0:
+            node = queue.dequeue()
+
+            if node.left:
+                queue.enqueue(node.left)
+            if node.right:
+                queue.enqueue(node.right)
+            if node.left and node.right:
+                arr.append(node.left.value + node.right.value)
+        return arr.index(max(arr)) + 1
+
+
+tree = BinaryTree(1)
+tree.root.left = Node(2)
+tree.root.right = Node(0)
+tree.root.left.left = Node(4)
+tree.root.left.right = Node(5)
+tree.root.right.left = Node(6)
+tree.root.right.right = Node(7)
+# print(tree.levelorder_print(tree.root), end="\n")
+
+tree2 = BinaryTree(39608)
+tree2.root.left = Node(0)
+tree2.root.right = Node(-34332)
+tree2.root.left.left = Node(84856)
+tree2.root.left.right = Node(62101)
+tree2.root.right.left = Node(98129)
+tree2.root.right.right = Node(0)
+tree2.root.left.left.left = Node(0)
+tree2.root.left.left.right = Node(-26118)
+tree2.root.right.right.left = Node(0)
+tree2.root.right.right.right = Node(57785)
+tree2.root.left.left.left.left = Node(-75141)
+tree2.root.left.left.left.right = Node(0)
+tree2.root.right.right.right.left = Node(0)
+tree2.root.right.right.right.right = Node(-63491)
+tree2.root.left.left.left.left.left = Node(-63367)
+
+# print(tree2.height(tree2.root))
+
+print(tree2.MaximumLevelSum())
+
+# print(tree.height(tree.root))
+# print(tree.mls(), end="\n")
