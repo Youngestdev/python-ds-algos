@@ -20,7 +20,7 @@ def solution(xs):
     if len(min_value) == 0 and len(max_value) == 0:
         return str(0)
 
-    output = 1L
+    output = 1
     for i in max_value:
         output *= i
         print(output)
