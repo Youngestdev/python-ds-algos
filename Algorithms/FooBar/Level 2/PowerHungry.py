@@ -20,7 +20,7 @@ def solution(xs):
     if len(min_value) == 0 and len(max_value) == 0:
         return str(0)
 
-    output = 1
+    output = 1L
     for i in max_value:
         output *= i
         print(output)
@@ -34,4 +34,4 @@ def solution(xs):
         output *= j
     return str(output)
 
-print(solution([-2,-3,4,-5]))
+#print(solution([-2,-3,4,-5]))
