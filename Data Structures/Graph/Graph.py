@@ -14,11 +14,28 @@ class Graph:
 
     # Depth First Search
     def DFS(self, v, visited):
+        print("Graph value: ", self.graph)
         visited[v] = True
-        print(v, end='')
+        print(v, end='\t')
         for i in self.graph[v]:
             if not visited[i]:
                 self.DFS(i, visited)
+        print(visited)
+
+    def BFS(self, root):
+        visited, queue = set(), collections.deque([root])
+        visited.add(queue)
+
+        while queue:
+            # Dequeue a vertex from Queue
+            vertex = queue.popleft()
+            print(str(vertex) + " ", end="")
+
+        # If not visited, mark it as visited and enqueue it.
+        for neighbour in self.graph[vertex]:
+            if neighbour not in visited:
+                visited.add(neighbour)
+                queue.append(neighbour)
 
     def fillOrder(self, v, visited, stack):
         visited[v] = True
@@ -55,6 +72,11 @@ class Graph:
                 gr.DFS(i, visited)
                 print("")
 
+    def printGraph(self):
+        for i in self.graph:
+            print("Node {} :-> {}".format(i, self.graph[i]))
+
+
 class GraphAdjMatrix:
     def __init__(self, size):
         self.adjMatrix = []
@@ -65,7 +87,7 @@ class GraphAdjMatrix:
     # Add edges into the graph
     def addEdges(self, v1, v2):
         if v1 == v2:
-            print("Same vertext %d and %d" % (v1, v2))
+            print("Same vertex %d and %d" % (v1, v2))
         self.adjMatrix[v1][v2] = 1
         self.adjMatrix[v2][v1] = 1
 
@@ -87,13 +109,77 @@ class GraphAdjMatrix:
                 print('{:4}'.format(val)),
             print
 
-graph = GraphAdjMatrix(4)
-graph.addEdges(0, 1)
-graph.addEdges(0, 2)
-graph.addEdges(1, 2)
-graph.addEdges(2, 0)
 
-graph.toString()
+class AdjNode:
+    def __init__(self, data):
+        self.vertex = data
+        self.next = None
 
-# graph.Transpose()
-# graph.printValues()
+
+class GraphAdjList:
+    def __init__(self, vertices):
+        self.V = vertices
+        self.graph = [None] * self.V
+
+    # Add edges
+    def addEdge(self, src, dest):
+        node = AdjNode(dest)
+        node.next = self.graph[src]
+        self.graph[src] = node
+
+        node = AdjNode(src)
+        node.next = self.graph[dest]
+        self.graph[dest] = node
+
+    # Print the graph
+    def printGraph(self):
+        for i in range(self.V):
+            print("Adjacency list of vertex {}\n head".format(i), end="")
+            temp = self.graph[i]
+            while temp:
+                print(" -> {}".format(temp.vertex), end="")
+                temp = temp.next
+            print(" \n")
+
+
+class WeightedGraph:
+    def __init__(self, size):
+        self.graph = defaultdict(list)
+        self.size = size
+
+    def addEdge(self, u, v, w):
+        self.graph[u].append([v, [w]])
+
+    def printGraph(self):
+        for row in range(self.size):
+            print("{}\t\t{}".format(row, self.graph[row]))
+
+    def DFS(self, v, visited):
+        print("Graph value: ", self.graph)
+        visited[v] = True
+        print(v, end="\n")
+        for i in self.graph[v][:-1]:
+            if not visited[i]:
+                self.DFS(i, visited)
+        print(visited)
+
+
+graph = WeightedGraph(4)
+graph.addEdge(0, 1, 4)
+graph.addEdge(2, 2, 6)
+graph.addEdge(1, 3, -1)
+graph.addEdge(1, 2, 0)
+
+_visited = [False] * graph.size
+
+# graph.printGraph()
+graph.DFS(2, _visited)
+print("\n")
+
+graph2 = Graph(4)
+graph2.addEdge(0, 1)
+graph2.addEdge(2, 2)
+graph2.addEdge(1, 3)
+graph2.addEdge(1, 2)
+graph2.DFS(2, [False] * graph2.V)
+print("\n")
