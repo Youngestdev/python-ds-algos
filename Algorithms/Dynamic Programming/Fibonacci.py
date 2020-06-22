@@ -1,3 +1,5 @@
+import time
+
 def fastRecursiveFibonacci(n):
     if n == 1:
         return 0, 1
@@ -29,6 +31,10 @@ def iterativeFibonacci(n):
     return curr
 
 
-# print(fibonacci(9))
-print(fastRecursiveFibonacci(5000))
-# print(iterativeFibonacci(9))
+if __name__ == "__main__":
+
+    begin = time.perf_counter()
+    fastRecursiveFibonacci(5000)
+    end = time.perf_counter()
+    print(f"5000 fibonacci steps done in {end - begin:0.4f} seconds")
+
