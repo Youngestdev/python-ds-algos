@@ -2,7 +2,7 @@ def permutation(arr):
     output = []
 
     def backtrack(nums, current):
-        if len(current) == len(arr):
+        if len(current) == len(arr) and len(output) < 3:
             output.append(current)
             return
         else:
@@ -13,6 +13,7 @@ def permutation(arr):
     return output
 
 
+print(permutation([3, 2, 1]))
 print(permutation([1, 2, 3]))
 
 

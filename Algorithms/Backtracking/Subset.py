@@ -1,8 +1,8 @@
 def subset(parent):
     output = []
     n = len(parent)
-    # 1,2,3
-    def backtrack(idx = 0, current=[]):
+
+    def backtrack(idx, current):
         if len(current) == k:
             output.append(current[:])
         for i in range(idx, n):
