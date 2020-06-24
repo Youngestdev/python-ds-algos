@@ -16,4 +16,18 @@ def fastLIS(arr):
                 dp[k][j] = max(keep, skip)
     return dp[0][1]
 
-print(fastLIS([10,9,2,5,3,7,101,18]))
+
+def fastLIS2(arr):
+    arr.insert(0, float('-inf'))
+    n = len(arr)
+    dp = [0 for _ in range(n)]
+    for i in range(n-1, -1, -1):
+        dp[i] = 1
+        for j in range(i+1, n):
+            if arr[j] >= arr[i] and 1 + dp[j] > dp[i]:
+                dp[i] = 1 + dp[j]
+    print(dp)
+    return dp[0] - 1
+
+
+print(fastLIS2([10,9,2,5,3,7,101,18]))
