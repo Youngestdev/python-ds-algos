@@ -14,27 +14,18 @@ def editDistance(first, second):
     3. Substitution: fn(i-1, j-1) if characters of indices i & j are equal, else fn(i-1, j-1) + 1
     """
 
-    m = len(first) - 1
-    n = len(second) - 1
-    edit = [[0 for i in range(len(second))] for j in range(len(first))]
+    m = len(first)
+    n = len(second)
+    edit = [[0]*(n+1) for _ in range(len(first) + 1)]
+    for i in range(1, m+1):
+        edit[i][0] = edit[i-1][0] + 1
+    # print(edit)
+    for i in range(1, n+1):
+        edit[0][i] = edit[0][i-1]+1
+    # print(edit)
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            edit[i][j] = min(edit[i-1][j]+1, edit[i][j-1]+1, edit[i-1][j-1] + (0 if first[i-1] == second[j-1] else 1))
+    return edit[-1][-1]
 
-    for j in range(n+1):
-        edit[0][j] = j
-
-    for i in range(1, len(first)):
-        edit[i][0] = i
-        for j in range(1, len(second)):
-            insertion = edit[i][j - 1] + 1
-            deletion = edit[i - 1][j] + 1
-            if first[i] == second[j]:
-                repetition = edit[i - 1][j - 1]  # Same characters.
-            else:
-                repetition = edit[i - 1][j - 1] + 1 # Different characters
-            edit[i][j] = min(insertion, deletion, repetition)
-
-    return edit[m][n]
-
-
-print(editDistance("ALGORITHM", "ALTRUISTIC")) # returns the correct answer
-print(editDistance("FOOD", "MONEY")) # returns 3 instead of 4.
-print(editDistance("azeez", "abdulazeez"))
+print(editDistance("ALGORITHM", "ALTRUISTIC"))
