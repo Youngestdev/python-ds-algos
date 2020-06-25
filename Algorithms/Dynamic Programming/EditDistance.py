@@ -26,6 +26,7 @@ def editDistance(first, second):
     for i in range(1, m+1):
         for j in range(1, n+1):
             edit[i][j] = min(edit[i-1][j]+1, edit[i][j-1]+1, edit[i-1][j-1] + (0 if first[i-1] == second[j-1] else 1))
+    # print(edit)
     return edit[-1][-1]
 
 print(editDistance("ALGORITHM", "ALTRUISTIC"))
