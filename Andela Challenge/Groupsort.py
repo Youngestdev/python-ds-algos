@@ -13,7 +13,7 @@ import sys
 # The function is expected to return a 2D_INTEGER_ARRAY.
 # The function accepts INTEGER_ARRAY arr as parameter.
 #
-import itertools
+
 
 def groupSort(arr):
     # Write your code here
@@ -23,13 +23,12 @@ def groupSort(arr):
         if arr[i] not in store:
             store[arr[i]] = 0
         store[arr[i]] += 1
-    
-    for k, v in sorted(list(store.items()), key=lambda x: (-1*x[1], x[0])):
-        # print("{} {}".format(k, v))
+
+    for k, v in sorted(list(store.items()), key=lambda x: (-1 * x[1], x[0])):
         result.append((k, v))
-    
-    # print(result)
     return result
 
+
 if __name__ == '__main__':
-    groupSort(arr)
+    arr = [3, 3, 1, 2, 1]
+    print(groupSort(arr))
