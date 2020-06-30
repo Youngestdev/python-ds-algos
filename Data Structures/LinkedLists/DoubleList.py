@@ -1,6 +1,5 @@
 from Nodes import DoubleNode
 
-
 class DoubleLinkedList:
     """
     Implementation for Double Linked List

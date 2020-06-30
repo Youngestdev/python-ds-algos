@@ -1,6 +1,6 @@
 # Kosaraju's Algorithm to find strongly connected components in Python
 
-from collections import defaultdict
+from collections import defaultdict, deque
 
 
 class Graph:
@@ -23,7 +23,8 @@ class Graph:
         print(visited)
 
     def BFS(self, root):
-        visited, queue = set(), collections.deque([root])
+        visited, queue = set(), deque([root])
+        print(queue)
         visited.add(queue)
 
         while queue:
@@ -164,22 +165,23 @@ class WeightedGraph:
         print(visited)
 
 
-graph = WeightedGraph(4)
-graph.addEdge(0, 1, 4)
-graph.addEdge(2, 2, 6)
-graph.addEdge(1, 3, -1)
-graph.addEdge(1, 2, 0)
-
-_visited = [False] * graph.size
-
-# graph.printGraph()
-graph.DFS(2, _visited)
-print("\n")
+# graph = WeightedGraph(4)
+# graph.addEdge(0, 1, 4)
+# graph.addEdge(2, 2, 6)
+# graph.addEdge(1, 3, -1)
+# graph.addEdge(1, 2, 0)
+#
+# _visited = [False] * graph.size
+#
+# # graph.printGraph()
+# graph.DFS(2, _visited)
+# print("\n")
 
 graph2 = Graph(4)
 graph2.addEdge(0, 1)
 graph2.addEdge(2, 2)
 graph2.addEdge(1, 3)
 graph2.addEdge(1, 2)
-graph2.DFS(2, [False] * graph2.V)
+graph2.BFS(1)
+# graph2.DFS(0, [False] * graph2.V)
 print("\n")
