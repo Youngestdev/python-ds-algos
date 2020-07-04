@@ -19,6 +19,7 @@ def fibonacci(n):
     prev, curr = 1, 0
     for i in range(2, n):
         Fibonacci[i] = Fibonacci[i - 1] + Fibonacci[i - 2]
+    print(Fibonacci)
     return Fibonacci[n - 1]
 
 
@@ -34,7 +35,8 @@ def iterativeFibonacci(n):
 if __name__ == "__main__":
 
     begin = time.perf_counter()
-    fastRecursiveFibonacci(5000)
+    #print(fastRecursiveFibonacci(200))
+    fibonacci(200)
     end = time.perf_counter()
     print(f"5000 fibonacci steps done in {end - begin:0.4f} seconds")
 
