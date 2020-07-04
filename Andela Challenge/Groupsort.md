@@ -1,6 +1,6 @@
 ## GroupSort
 
-Given an array of integer, create a 2 dimensional array where the first element is a distinct value from the array and the second element is that value's frequency within the array. Sort the resulting asrray descending by frequency. If multiple values have the same frequency, they should be sorted accordingly.
+Given an array of integer, create a 2 dimensional array where the first element is a distinct value from the array and the second element is that value's frequency within the array. Sort the resulting array descending by frequency. If multiple values have the same frequency, they should be sorted accordingly.
 
 Example:
 
