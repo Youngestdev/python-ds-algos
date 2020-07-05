@@ -23,7 +23,7 @@ def longestSequence(array):
 
 
 if __name__ == '__main__':
-    print(longestSequence([1,2,3,0,6,5,4,3,2,1]))
-    print(longestSequence([1,2,2,1]))
-    print(longestSequence([1,2,4,0,-1,19,4,3,2,1]))
-    print(longestSequence([1,2,3,4,2,1]))
+    print(longestSequence([1, 2, 3, 0, 6, 5, 4, 3, 2, 1]))
+    print(longestSequence([1, 2, 2, 1]))
+    print(longestSequence([1, 2, 4, 0, -1, 19, 4, 3, 2, 1]))
+    print(longestSequence([1, 2, 3, 4, 2, 1]))
