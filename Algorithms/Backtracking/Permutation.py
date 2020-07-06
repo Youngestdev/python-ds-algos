@@ -13,8 +13,8 @@ def permutation(arr):
     return output
 
 
-print(permutation([3, 2, 1]))
-print(permutation([1, 2, 3]))
+#
+# print(permutation([1, 2, 3]))
 
 
 def permuteString(sentence):
@@ -32,4 +32,7 @@ def permuteString(sentence):
     return result
 
 
-print(permuteString("ade"))
+# print(permuteString("ade"))
+
+if __name__ == '__main__':
+    print(permutation([3, 2, 1]))
