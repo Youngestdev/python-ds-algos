@@ -22,12 +22,8 @@ def groupSort(arr):
         if arr[i] not in store:
             store[arr[i]] = 0
         store[arr[i]] += 1
-    print(list(store.items()))
-    print(sorted(list(store.items()), key=lambda x: (-1 * x[1], x[0])))
 
-    # for k, v in sorted(list(store.items()), key=lambda x: (-1 * x[1], x[0])):
-    #     result.append((k, v))
-    # return result
+    
     return sorted(list(store.items()), key=lambda x: (-1 * x[1], x[0]))
 
 

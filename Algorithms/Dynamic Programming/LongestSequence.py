@@ -12,9 +12,6 @@ def longestSequence(array):
         for j in range(i - 1, len(array)):
             if array[j] < array[i]:
                 dp[0][i] = max(dp[0][j] + 1, dp[0][i])
-
-    for i in range(len(array)):
-        for j in range(i - 1, len(array)):
             if array[j] > array[i]:
                 dp[1][i] = max(dp[1][j] + 1, dp[1][i])
 
@@ -27,3 +24,4 @@ if __name__ == '__main__':
     print(longestSequence([1, 2, 2, 1]))
     print(longestSequence([1, 2, 4, 0, -1, 19, 4, 3, 2, 1]))
     print(longestSequence([1, 2, 3, 4, 2, 1]))
+    print(longestSequence([1, -1]))
