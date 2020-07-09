@@ -13,13 +13,13 @@ class BinaryTree(object):
 
     def print_tree(self, traversal_type):
         if traversal_type == "preorder":
-            return self.preorder_print(tree.root, "")
+            return self.preorder_print(self.root, "")
         elif traversal_type == "inorder":
-            return self.inorder_print(tree.root, "")
+            return self.inorder_print(self.root, "")
         elif traversal_type == "postorder":
-            return self.postorder_print(tree.root, "")
+            return self.postorder_print(self.root, "")
         elif traversal_type == "levelorder":
-            return self.levelorder_print(tree.root)
+            return self.levelorder_print(self.root)
 
         else:
             print("Traversal type " + str(traversal_type) + " is not supported.")
@@ -68,6 +68,25 @@ class BinaryTree(object):
 
         return traversal
 
+    def dfsPrint(self, start):
+        if start is None:
+            return
+
+        stack = Stack()
+        stack.push(start)
+        traversal = ""
+        while len(stack) > 0:
+            traversal += str(stack.peek().value) + "->"
+
+            node = stack.pop()
+            if node.left:
+                stack.push(node.left)
+            if node.right:
+                stack.push(node.right)
+
+        return traversal
+
+
     def reverse_levelorder_print(self, start):
         if start is None:
             return
@@ -105,6 +124,46 @@ class BinaryTree(object):
             return 0
         return 1 + self.size_(node.left) + self.size_(node.right)
 
+    def bfsSize(self):
+
+        if self.root is None:
+            return 0
+
+        queue = Queue()
+        head = self.root
+        if head is not None:
+            queue.enqueue(head)
+        count = 0
+        while queue.size() > 0:
+            count += 1
+            node = queue.dequeue()
+            if node.left is not None:
+                queue.enqueue(node.left)
+            if node.right is not None:
+                queue.enqueue(node.right)
+        return count
+
+
+    def dfsSize(self):
+        if self.root is None:
+            return 0
+
+        stack = Stack()
+        head = self.root
+        if head is not None:
+            stack.push(head)
+        count = 0
+
+        while len(stack) > 0:
+            count += 1
+            node = stack.pop()
+            if node.left is not None:
+                stack.push(node.left)
+            if node.right is not None:
+                stack.push(node.right)
+
+        return count
+
     #               1
     #           /       \
     #          2          3
@@ -138,30 +197,14 @@ class BinaryTree(object):
         return arr.index(max(arr)) + 1
 
 
-tree = BinaryTree(1)
-tree.root.left = Node(2)
-tree.root.right = Node(0)
-tree.root.left.left = Node(4)
-tree.root.left.right = Node(5)
-tree.root.right.left = Node(6)
-tree.root.right.right = Node(7)
+if __name__ == '__main__':
+    Tree = BinaryTree(2)
+    Tree.root.left = Node(4)
+    Tree.root.right = Node(5)
+    Tree.root.left.left = Node(6)
+    Tree.root.left.right = Node(7)
 
-tree2 = BinaryTree(39608)
-tree2.root.left = Node(0)
-tree2.root.right = Node(-34332)
-tree2.root.left.left = Node(84856)
-tree2.root.left.right = Node(62101)
-tree2.root.right.left = Node(98129)
-tree2.root.right.right = Node(0)
-tree2.root.left.left.left = Node(0)
-tree2.root.left.left.right = Node(-26118)
-tree2.root.right.right.left = Node(0)
-tree2.root.right.right.right = Node(57785)
-tree2.root.left.left.left.left = Node(-75141)
-tree2.root.left.left.left.right = Node(0)
-tree2.root.right.right.right.left = Node(0)
-tree2.root.right.right.right.right = Node(-63491)
-tree2.root.left.left.left.left.left = Node(-63367)
-
-print(tree2.levelorder_print(tree2.root))
-# print(tree2.MaximumLevelSum())
+    print(Tree.size_(Tree.root))
+    print(Tree.bfsSize())
+    print(Tree.dfsPrint(Tree.root))
+    print(Tree.levelorder_print(Tree.root))
