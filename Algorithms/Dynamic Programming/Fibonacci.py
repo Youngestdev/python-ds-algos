@@ -35,8 +35,7 @@ def iterativeFibonacci(n):
 if __name__ == "__main__":
 
     begin = time.perf_counter()
-    #print(fastRecursiveFibonacci(200))
-    fibonacci(200)
+    fastRecursiveFibonacci(5000)
     end = time.perf_counter()
     print(f"5000 fibonacci steps done in {end - begin:0.4f} seconds")
 

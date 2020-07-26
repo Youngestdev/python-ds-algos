@@ -4,8 +4,8 @@
 from Nodes import Node
 
 
-class LinkedList(object):
-    def __init__(self, head):
+class LinkedList():
+    def __init__(self, head=0):
         self.head = Node(head)
 
     def append(self, data):
@@ -177,6 +177,7 @@ class LinkedList(object):
                 duplicates[cur.data] = 1
                 prev = cur
             cur = prev.next
+
 
     def nth_to_last_node(self, n):
         total_len = self.len_iterative()

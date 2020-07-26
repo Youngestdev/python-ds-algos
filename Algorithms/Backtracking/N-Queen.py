@@ -19,4 +19,27 @@ def SolveNQueens(n):
     placequeens(arr, 0)
     return len(count)
 
-print(SolveNQueens(4))
+
+def Nqueens(n):
+    column = [0 for _ in range(n * n)]
+    diag = [0 for _ in range(n * n)]
+    diag2 = [0 for _ in range(n * n)]
+
+    def placequeens(y):
+        count = 0
+        if y == n:
+            count += 1
+            return
+        for i in range(0, n):
+            if column[i] or diag[i + y] or diag2[i - y + n - 1]: continue
+            column[i] = diag[i + y] = diag2[i - y + n - 1] = 1
+            placequeens(y + 1)
+            column[i] = diag[i + y] = diag2[i - y + n - 1] = 0
+
+    placequeens(0)
+    return column
+
+
+if __name__ == '__main__':
+    # SolveNQueens(64)
+    print(Nqueens(4))
